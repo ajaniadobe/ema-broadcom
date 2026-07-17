@@ -14,12 +14,12 @@
 
 :root {
   /* colors */
-  --background-color: rgb(255, 255, 255);
-  --light-color: rgb(245, 245, 246);
-  --dark-color: rgb(39, 41, 65);
-  --text-color: rgb(73, 74, 94);
-  --link-color: rgb(0, 92, 138);
-  --link-hover-color: rgb(0, 117, 163);
+  --background-color: rgb(255 255 255);
+  --light-color: rgb(245 245 246);
+  --dark-color: rgb(39 41 65);
+  --text-color: rgb(73 74 94);
+  --link-color: rgb(0 92 138);
+  --link-hover-color: rgb(0 117 163);
   --overlay-background-color: lightgrey;
 
   /* fonts */

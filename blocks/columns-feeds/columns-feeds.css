@@ -22,7 +22,7 @@
   min-width: 0;
   padding: 0;
   background-color: var(--background-color);
-  border: 1px solid rgb(209, 210, 215);
+  border: 1px solid rgb(209 210 215);
 }
 
 /* On mobile, stacked columns collapse shared borders */
@@ -97,6 +97,7 @@ main .columns-feeds li p a.button:hover {
 }
 
 /* Product description: a paragraph following the title link paragraph */
+/* stylelint-disable-next-line no-descending-specificity */
 .columns-feeds li p:not(:first-child) {
   margin-top: 4px;
   font-size: 15px;

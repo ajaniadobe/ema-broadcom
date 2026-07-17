@@ -1,15 +1,15 @@
 :root {
   --heading-font-family: "Inter", sans-serif;
   --body-font-family: "Inter", sans-serif;
-  --background-color: rgb(255, 255, 255);
-  --text-color: rgb(73, 74, 94);
-  --link-color: rgb(0, 92, 138);
-  --link-hover-color: rgb(0, 117, 163);
+  --background-color: rgb(255 255 255);
+  --text-color: rgb(73 74 94);
+  --link-color: rgb(0 92 138);
+  --link-hover-color: rgb(0 117 163);
   --section-padding: 40px;
   --content-max-width: 1170px;
   --nav-height: 90px;
-  --dark-color: rgb(39, 41, 65);
-  --light-color: rgb(245, 245, 246);
+  --dark-color: rgb(39 41 65);
+  --light-color: rgb(245 245 246);
   --heading-size-xxl: 44px;
   --heading-size-xl: 32px;
   --heading-size-l: 22px;
