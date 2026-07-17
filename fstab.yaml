@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p130360-e1272151.adobeaemcloud.com/bin/franklin.delivery/adobe-rnd/aem-block-collection-xwalk/main"
+    url: "https://author-p142404-e1461571.adobeaemcloud.com/bin/franklin.delivery/ajaniadobe/ema-broadcom/main"
     type: "markup"
     suffix: ".html"
