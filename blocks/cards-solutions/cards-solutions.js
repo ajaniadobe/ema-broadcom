@@ -14,7 +14,28 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+
+  /* convert the "### Title" link paragraph into a heading link */
+  ul.querySelectorAll('.cards-solutions-card-body a').forEach((a) => {
+    const text = a.textContent.trim();
+    const match = text.match(/^#{1,6}\s+(.*)$/);
+    if (match) {
+      const [, title] = match;
+      a.textContent = title;
+      const p = a.closest('p');
+      if (p && p.childNodes.length === 1) {
+        const h4 = document.createElement('h4');
+        h4.className = 'cards-solutions-card-title';
+        h4.append(a);
+        p.replaceWith(h4);
+      }
+    }
+  });
+
   ul.querySelectorAll('picture > img').forEach((img) => {
+    // SVG icons should not be run through the raster optimizer (it mangles the src);
+    // keep the original picture/img so vector glyphs render as authored.
+    if (/\.svg(\?|$)/i.test(img.src)) return;
     const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);

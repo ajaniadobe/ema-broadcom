@@ -1,33 +1,75 @@
+/* Block: columns-media -- design migrated from broadcom.com "About Us" ContentCardTwoColumn */
+
+/* Row: stacks on mobile, side-by-side text (left) + media (right) on desktop */
 .columns-media > div {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+/* Text cell paragraphs match source body copy (15px / 23px, brand text color) */
+.columns-media > div > div p {
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--text-color);
+  margin: 0 0 10px;
+}
+
+.columns-media > div > div p:last-child {
+  margin-bottom: 0;
+}
+
+/* CTA link -- source renders a bold link-blue text link (16px / 700), no button chrome.
+   EDS auto-decorated it to a.button; override to plain bold link. */
+.columns-media > div > div .button-container {
+  margin: 10px 0 0;
+}
+
+.columns-media a.button:any-link {
+  display: inline;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns-media a.button:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Media cell: video/poster renders as a responsive 16:9 element with source's 5px radius */
+.columns-media picture,
+.columns-media video,
+.columns-media iframe {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .columns-media img {
-  width: 100%;
-}
-
-.columns-media > div > div {
-  order: 1;
-}
-
-.columns-media > div > .columns-media-img-col {
-  order: 0;
-}
-
-.columns-media > div > .columns-media-img-col img {
   display: block;
+  width: 100%;
+  border-radius: 5px;
 }
 
 @media (width >= 900px) {
   .columns-media > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
   }
 
-  .columns-media > div > div {
-    flex: 1;
-    order: unset;
+  /* Left text column ~58.33% (source col-lg-7), right media ~41.67% (col-lg-5) */
+  .columns-media > div > div:first-child {
+    flex: 0 0 58.3333%;
+    max-width: 58.3333%;
+  }
+
+  .columns-media > div > div:last-child {
+    flex: 0 0 41.6667%;
+    max-width: 41.6667%;
   }
 }
