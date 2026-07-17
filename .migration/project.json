@@ -1,0 +1,14 @@
+{
+  "type": "xwalk",
+  "sites": {
+    "ema-broadcom": {
+      "previewOrg": "ajaniadobe",
+      "previewSite": "ema-broadcom",
+      "aemSitePath": "/content/ema-broadcom",
+      "aemAssetsFolderPath": "/content/dam/ema-broadcom",
+      "aemSiteName": "ema-broadcom",
+      "aemSiteTitle": "Broadcom",
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

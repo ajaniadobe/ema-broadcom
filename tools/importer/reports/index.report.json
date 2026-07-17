@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.broadcom.com/",
+  "path": "index",
+  "timestamp": "2026-07-17T15:00:59.164Z",
+  "title": "Broadcom Inc. | Connecting Everything",
+  "template": "homepage",
+  "blocks": [
+    "hero-banner",
+    "cards-solutions",
+    "cards-links",
+    "columns-feeds",
+    "columns-media"
+  ]
+}

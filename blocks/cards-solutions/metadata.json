@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-solutions",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-17T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.broadcom.com/",
+    "originPage": "Broadcom corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "feature",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "5 cards: icon + linked title + short description",
+    "buttonCount": 0,
+    "imageCount": 5
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "solution/feature grids with icons",
+      "category navigation grids",
+      "icon + title + description tiles"
+    ],
+    "notSuitableFor": [
+      "cards with large photographic images",
+      "text-only link lists without icons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-17T00:00:00.000Z"
+  }
+}

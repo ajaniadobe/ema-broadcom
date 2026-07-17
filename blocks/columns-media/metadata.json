@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-17T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.broadcom.com/",
+    "originPage": "Broadcom corporate homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "media",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "2 columns: rich text + CTA | embedded video with poster",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "about/overview sections with text next to media",
+      "two-column text and video/image layouts",
+      "content-plus-media promotional blocks"
+    ],
+    "notSuitableFor": [
+      "three-or-more column feed lists",
+      "text-only side-by-side comparisons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-17T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-links",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-17T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.broadcom.com/",
+    "originPage": "Broadcom corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "compact",
+    "purpose": "link-grid",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + 6 button-style link cards (no images)",
+    "buttonCount": 6,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "popular/quick links sections",
+      "grids of prominent link buttons on a colored band",
+      "text-only clickable tiles"
+    ],
+    "notSuitableFor": [
+      "cards with images or icons",
+      "single call-to-action"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-17T00:00:00.000Z"
+  }
+}
