@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-feeds",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-17T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.broadcom.com/",
+    "originPage": "Broadcom corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "wide",
+    "purpose": "feed",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "3 columns, each with heading + list of dated linked items + footer link",
+    "buttonCount": 3,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "multi-column feed/listing sections (news, blogs, products)",
+      "3-up text list layouts",
+      "side-by-side link lists with per-column footers"
+    ],
+    "notSuitableFor": [
+      "image-and-text side-by-side layouts",
+      "two-column media layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-17T00:00:00.000Z"
+  }
+}

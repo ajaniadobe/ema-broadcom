@@ -1,0 +1,57 @@
+{
+  "definitions": [
+    {
+      "title": "Columns Feeds",
+      "id": "columns-feeds",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/columns/v1/columns",
+            "template": {
+              "columns": "3",
+              "rows": "1"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "columns-feeds",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "number",
+          "name": "columns",
+          "value": "",
+          "label": "Columns"
+        },
+        {
+          "component": "text",
+          "valueType": "number",
+          "name": "rows",
+          "value": "",
+          "label": "Rows"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "columns-feeds",
+      "components": [
+        "column"
+      ]
+    },
+    {
+      "id": "column",
+      "components": [
+        "text",
+        "image",
+        "button",
+        "title"
+      ]
+    }
+  ]
+}
