@@ -1,27 +1,84 @@
+/* Block: cards-links ("no-images" variant of cards)
+ * Source: Broadcom homepage ".popular-link-list" — a set of prominent CTA
+ * link-buttons on the dark "Popular Links" band. Values extracted from the
+ * source computed styles. The block lives inside .section.dark, so the dark
+ * background + white text come from styles.css; this file styles the grid of
+ * bordered link-buttons on top of that band.
+ */
+
+/* Layout: flex grid of link-buttons, single column on mobile */
 .cards-links > ul {
   list-style: none;
-  margin: 0;
+  margin: 24px 0 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  column-gap: 30px;
+  justify-content: center;
 }
 
+/* Each row becomes an <li>; the empty (image) cell is hidden and the whole
+ * li stretches so its button fills the width. */
 .cards-links > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  display: flex;
+  border: 0;
+  background: none;
 }
 
-.cards-links .cards-links-card-body {
-  margin: 16px;
+/* First .cards-links-card-body is the empty image cell — remove it */
+.cards-links > ul > li > .cards-links-card-body:empty {
+  display: none;
 }
 
-.cards-links .cards-links-card-image {
-  line-height: 0;
+/* The content cell that holds the button should fill the li */
+.cards-links > ul > li > .cards-links-card-body {
+  flex: 1 1 auto;
+  margin: 0;
 }
 
-.cards-links > ul > li img {
+.cards-links .button-container {
+  display: block;
+  margin: 0;
+}
+
+/* Link-button styling — must out-specify the global `main a.button` reset
+ * in styles.css that strips button chrome. */
+main .cards-links a.button:any-link {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  box-sizing: border-box;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0;
+  padding: 12px 16px;
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+}
+
+main .cards-links a.button:hover,
+main .cards-links a.button:focus {
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Desktop: 3 columns x 2 rows */
+@media (width >= 900px) {
+  .cards-links > ul {
+    flex-direction: row;
+  }
+
+  .cards-links > ul > li {
+    flex: 0 1 calc(33.3% - 20px);
+  }
 }

@@ -1,33 +1,155 @@
+/* Block: columns-feeds — CSS extracted from Broadcom homepage source computed styles.
+   Source: three feed columns (Latest Products / News / Blogs) on a light background.
+   EDS decorated DOM: .columns-feeds > div (row) > div (column) each containing
+   an h2, a <ul> of <li> items, and (news/blogs) a trailing <p><a> footer link.
+   Products <li>: <p><a> title + <p> description.
+   News/Blogs <li>: <p> date + <p><a> headline. */
+
+.columns-feeds {
+  color: var(--text-color);
+}
+
+/* Row: three equal columns side by side (mobile stacks below) */
 .columns-feeds > div {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
-.columns-feeds img {
-  width: 100%;
-}
-
+/* Column card: white with 1px light-gray border (adjacent borders form dividers) */
 .columns-feeds > div > div {
-  order: 1;
+  flex: 1 1 calc(33.3333% - 20px);
+  min-width: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  border: 1px solid rgb(209, 210, 215);
 }
 
-.columns-feeds > div > .columns-feeds-img-col {
-  order: 0;
+/* On mobile, stacked columns collapse shared borders */
+.columns-feeds > div > div + div {
+  margin-top: -1px;
 }
 
-.columns-feeds > div > .columns-feeds-img-col img {
+/* Column heading */
+.columns-feeds h2 {
+  margin: 0;
+  padding: 24px 24px 0;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 31px;
+  letter-spacing: 0.25px;
+  color: var(--text-color);
+}
+
+/* Item list */
+.columns-feeds ul {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0;
+}
+
+.columns-feeds li {
+  margin: 0;
+  padding: 16px 24px;
+}
+
+/* Paragraphs inside items reset to compact spacing */
+.columns-feeds li p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--text-color);
+}
+
+/* Title / headline links (blue, bold). EDS decorates these single-link
+   paragraphs as .button-container > a.button, so we must out-specify the
+   global a.button reset (which forces weight 600 and center alignment). */
+.columns-feeds li p a,
+main .columns-feeds li p a.button:any-link {
+  display: inline;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 25px;
+  text-align: left;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns-feeds li p a:hover,
+main .columns-feeds li p a.button:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* The decorated button-container around item links must not center them */
+.columns-feeds li p.button-container {
   display: block;
+  text-align: left;
+}
+
+/* Date line (news/blogs): a plain first paragraph with no link */
+.columns-feeds li p:first-child:not(:has(a)) {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  color: var(--text-color);
+}
+
+/* Product description: a paragraph following the title link paragraph */
+.columns-feeds li p:not(:first-child) {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 23px;
+  color: var(--text-color);
+}
+
+/* Footer link (View all news / Read the blogs) — centered at bottom of column.
+   EDS decorates the standalone <p><a> at the end of a column as a
+   .button-container with an a.button; global styles reset a.button to a plain
+   link, so we only need positioning + weight/size here. */
+.columns-feeds > div > div > p:last-child {
+  margin: 0;
+  padding: 0 0 24px;
+  text-align: center;
+}
+
+.columns-feeds > div > div > p:last-child a,
+.columns-feeds > div > div > p:last-child a.button:any-link {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns-feeds > div > div > p:last-child a:hover,
+.columns-feeds > div > div > p:last-child a.button:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
 }
 
 @media (width >= 900px) {
   .columns-feeds > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 30px;
   }
 
   .columns-feeds > div > div {
-    flex: 1;
-    order: unset;
+    flex: 1 1 calc(33.3333% - 20px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* No negative-margin border collapse on desktop (columns are gapped) */
+  .columns-feeds > div > div + div {
+    margin-top: 0;
+  }
+
+  /* Push footer link to the bottom of each equal-height column */
+  .columns-feeds > div > div > p:last-child {
+    margin-top: auto;
   }
 }
