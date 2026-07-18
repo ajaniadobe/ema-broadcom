@@ -425,6 +425,18 @@
     ]
   },
   {
+    "id": "note",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content"
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {

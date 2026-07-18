@@ -49,5 +49,79 @@ export default function transform(hookName, element, payload) {
       'iframe',
       'link',
     ]);
+
+    const doc = element.ownerDocument;
+
+    // STEP 1 — Genuine data <table>s must become the project "Table" block, NOT a
+    // block auto-named after the first header cell (leaving a raw <table> for
+    // html2md turns "Software or tile" into a bogus "software-or-tile" block and
+    // drops the header row). Rebuild each table as the EDS Table block structure
+    // md2jcr understands:
+    //   row 1 (full-width): "Table"             -> block name
+    //   row 2 (full-width): "table-<n>-columns"  -> the filter (column count)
+    //   each data row: ["table-col-<n>", ...cells] incl. the original header row
+    // Full-width rows use colspan so the serialized grid table aligns (misaligned
+    // borders would make md2jcr treat the whole thing as prose or mis-split rows).
+    //
+    // IMPORTANT: this runs BEFORE the blockquote->note conversion below. That step
+    // uses WebImporter.Blocks.createBlock, which itself emits <table> elements; if
+    // table conversion ran afterwards it would wrap those generated tables too.
+    // Snapshotting the source tables up front (Array.from) and running first keeps
+    // us scoped to the page's real data tables only.
+    Array.from(element.querySelectorAll('table')).forEach((srcTable) => {
+      const srcRows = Array.from(srcTable.querySelectorAll('tr'))
+        .filter((tr) => tr.querySelector('th, td'));
+      if (srcRows.length === 0) return;
+      const ncol = Math.max(
+        ...srcRows.map((tr) => tr.querySelectorAll('th, td').length),
+      );
+      if (ncol < 1 || ncol > 5) return; // table-col-N models cover 1..5 columns
+      const total = ncol + 1; // +1 for the leading table-col-N marker column
+
+      const out = doc.createElement('table');
+      const fullRow = (text) => {
+        const tr = doc.createElement('tr');
+        const td = doc.createElement('td');
+        td.setAttribute('colspan', String(total));
+        td.textContent = text;
+        tr.appendChild(td);
+        out.appendChild(tr);
+      };
+      fullRow('Table');
+      fullRow(`table-${ncol}-columns`);
+      srcRows.forEach((tr) => {
+        const cells = Array.from(tr.querySelectorAll('th, td'));
+        const row = doc.createElement('tr');
+        const marker = doc.createElement('td');
+        marker.textContent = `table-col-${ncol}`;
+        row.appendChild(marker);
+        for (let i = 0; i < ncol; i += 1) {
+          const td = doc.createElement('td');
+          if (cells[i]) td.innerHTML = cells[i].innerHTML;
+          row.appendChild(td);
+        }
+        out.appendChild(row);
+      });
+      srcTable.replaceWith(out);
+    });
+
+    // STEP 2 — blockquote is not a supported node type in the xwalk md2jcr
+    // conversion (throws UnsupportedElementError). These are documentation "note"
+    // callouts — convert each into a "note" block so it renders as a distinct note
+    // box. WebImporter.Blocks.createBlock builds the block table; the single cell
+    // carries the note content with the field:content hint for the xwalk model.
+    element.querySelectorAll('blockquote').forEach((bq) => {
+      const contentCell = doc.createDocumentFragment();
+      contentCell.appendChild(doc.createComment(' field:content '));
+      while (bq.firstChild) {
+        contentCell.appendChild(bq.firstChild);
+      }
+
+      const block = WebImporter.Blocks.createBlock(doc, {
+        name: 'note',
+        cells: [[contentCell]],
+      });
+      bq.replaceWith(block);
+    });
   }
 }
