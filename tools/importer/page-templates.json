@@ -92,7 +92,16 @@
       "representativeUrl": "https://techdocs.broadcom.com/us/en/vmware-tanzu/platform/tanzu-hub/10-4/tnz-hub/release-notes.html",
       "coverageGaps": [],
       "description": "Broadcom TechDocs documentation article (Tanzu Hub release notes): left TOC sidebar, center article body with headings, tables and code blocks, right in-page navigation. Header/footer handled separately; core content is the markdown article body.",
-      "blocks": [],
+      "blocks": [
+        {
+          "name": "note",
+          "instances": ["blockquote"]
+        },
+        {
+          "name": "table",
+          "instances": ["table"]
+        }
+      ],
       "sections": [
         {
           "id": "article-title",
@@ -107,7 +116,7 @@
           "name": "Article Body",
           "selector": ["div.main-mid .main-content .markdown"],
           "style": null,
-          "blocks": [],
+          "blocks": ["note", "table"],
           "defaultContent": ["div.main-mid .main-content .markdown"]
         }
       ]

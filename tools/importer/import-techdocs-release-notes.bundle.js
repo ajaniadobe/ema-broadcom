@@ -75,6 +75,53 @@ var CustomImportScript = (() => {
         "iframe",
         "link"
       ]);
+      const doc = element.ownerDocument;
+      Array.from(element.querySelectorAll("table")).forEach((srcTable) => {
+        const srcRows = Array.from(srcTable.querySelectorAll("tr")).filter((tr) => tr.querySelector("th, td"));
+        if (srcRows.length === 0) return;
+        const ncol = Math.max(
+          ...srcRows.map((tr) => tr.querySelectorAll("th, td").length)
+        );
+        if (ncol < 1 || ncol > 5) return;
+        const total = ncol + 1;
+        const out = doc.createElement("table");
+        const fullRow = (text) => {
+          const tr = doc.createElement("tr");
+          const td = doc.createElement("td");
+          td.setAttribute("colspan", String(total));
+          td.textContent = text;
+          tr.appendChild(td);
+          out.appendChild(tr);
+        };
+        fullRow("Table");
+        fullRow(`table-${ncol}-columns`);
+        srcRows.forEach((tr) => {
+          const cells = Array.from(tr.querySelectorAll("th, td"));
+          const row = doc.createElement("tr");
+          const marker = doc.createElement("td");
+          marker.textContent = `table-col-${ncol}`;
+          row.appendChild(marker);
+          for (let i = 0; i < ncol; i += 1) {
+            const td = doc.createElement("td");
+            if (cells[i]) td.innerHTML = cells[i].innerHTML;
+            row.appendChild(td);
+          }
+          out.appendChild(row);
+        });
+        srcTable.replaceWith(out);
+      });
+      element.querySelectorAll("blockquote").forEach((bq) => {
+        const contentCell = doc.createDocumentFragment();
+        contentCell.appendChild(doc.createComment(" field:content "));
+        while (bq.firstChild) {
+          contentCell.appendChild(bq.firstChild);
+        }
+        const block = WebImporter.Blocks.createBlock(doc, {
+          name: "note",
+          cells: [[contentCell]]
+        });
+        bq.replaceWith(block);
+      });
     }
   }
 

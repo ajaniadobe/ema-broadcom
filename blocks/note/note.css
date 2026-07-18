@@ -1,0 +1,21 @@
+.note-callout {
+  margin: 20px 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--link-color);
+  border-radius: 4px;
+  background-color: var(--light-color);
+  color: var(--text-color);
+}
+
+.note-callout .note-body > :first-child {
+  margin-top: 0;
+}
+
+.note-callout .note-body > :last-child {
+  margin-bottom: 0;
+}
+
+.note-callout p {
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+}
